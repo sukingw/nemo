@@ -4,8 +4,9 @@ OBJECT = compact
 
 LIB_PATH = -L ../../output/lib
 			
-LIBS = -Wl,-Bstatic -lnemo -lnemodb -lrocksdb \
+LIBS = -Wl,-Bstatic -lnemo -lnemodb \
 	   -Wl,-Bdynamic -lpthread\
+	   -lrocksdb \
 	   -lsnappy \
 	   -lrt \
 	   -lz \
