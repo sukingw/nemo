@@ -80,6 +80,15 @@ Nemo::Nemo(const std::string &db_path, const Options &options)
 
    //open_options_.max_bytes_for_level_base = (128 << 20);
 
+   // more options for memory controll
+   if (options.block_cache_size_mb > 0) {
+	  rocksdb::BlockBasedTableOptions bbo;
+	  bbo.block_size = (size_t)options.block_cache_size_mb * 1024 * 1024;
+	  bbo.block_cache = rocksdb::NewLRUCache(bbo.block_size);
+	  open_options_.table_factory.reset(rocksdb::NewBlockBasedTableFactory(bbo));
+   }
+   open_options_.allow_mmap_reads = options.allow_mmap_reads;
+
    rocksdb::DBNemo *db_ttl;
 
    rocksdb::Status s = rocksdb::DBNemo::Open(open_options_, db_path_ + "kv", &db_ttl, rocksdb::kMetaPrefixKv);

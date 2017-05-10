@@ -4,6 +4,10 @@
 namespace nemo {
 
 struct Options {
+	// more options for memory control
+	int block_cache_size_mb;
+	bool allow_mmap_reads;
+
     bool create_if_missing;
     int write_buffer_size;
     int max_open_files;
@@ -18,7 +22,9 @@ struct Options {
     int max_background_compactions;
     int max_bytes_for_level_multiplier;
 
-	Options() : create_if_missing(true),
+	Options() : block_cache_size_mb(0),
+		allow_mmap_reads(false),
+		create_if_missing(true),
         write_buffer_size(64 * 1024 * 1024),
         max_open_files(5000),
         use_bloomfilter(true),
