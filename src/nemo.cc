@@ -83,8 +83,8 @@ Nemo::Nemo(const std::string &db_path, const Options &options)
    // more options for memory controll
    if (options.block_cache_size_mb > 0) {
 	  rocksdb::BlockBasedTableOptions bbo;
-	  bbo.block_size = (size_t)options.block_cache_size_mb * 1024 * 1024;
-	  bbo.block_cache = rocksdb::NewLRUCache(bbo.block_size);
+//	  bbo.block_size = (size_t)options.block_cache_size_mb * 1024 * 1024;
+	  bbo.block_cache = rocksdb::NewLRUCache((size_t)options.block_cache_size_mb * 1024 * 1024);
 	  open_options_.table_factory.reset(rocksdb::NewBlockBasedTableFactory(bbo));
    }
    open_options_.allow_mmap_reads = options.allow_mmap_reads;
