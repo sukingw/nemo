@@ -60,8 +60,9 @@ $(LIBRARY): $(OBJS)
 	cp -rf ./include/* $(OUTPUT)/include
 	mv ./libnemo.a $(OUTPUT)/lib/
 	cp $(ROCKSDB_PATH)/output/lib/libnemodb.a $(OUTPUT)/lib
-	# cp $(ROCKSDB_PATH)/output/lib/librocksdb.a $(OUTPUT)/lib
-	cp $(ROCKSDB_PATH)/output/lib/librocksdb.so $(OUTPUT)/lib
+	cp $(ROCKSDB_PATH)/output/lib/librocksdb.a $(OUTPUT)/lib
+	#cp $(ROCKSDB_PATH)/output/lib/librocksdb.a /usr/local/pika22/lib
+	#cp $(ROCKSDB_PATH)/output/lib/librocksdb.so $(OUTPUT)/lib
 	# tools
 	$(MAKE) -C $(TOOLS_COMPACT_PATH) $(TOOLS_COMPACT_OBJ)
 	$(MAKE) -C $(TOOLS_METASCAN_PATH) $(TOOLS_METASCAN_OBJ)

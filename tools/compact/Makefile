@@ -2,12 +2,14 @@ GCC = g++
 CPPFLAGS = -DROCKSDB_PLATFORM_POSIX -DROCKSDB_LIB_IO_POSIX  -DOS_LINUX -Wall -W -Wno-unused-parameter -DDEBUG -D__XDEBUG__ -g -O2 -std=c++11
 OBJECT = compact
 
-LIB_PATH = -L ../../output/lib
-			
+LIB_PATH = -L ../../output/lib \
+		   -L /usr/lib/86_64-linux-gnu
+
 LIBS = -Wl,-Bstatic -lnemo -lnemodb \
 	   -Wl,-Bdynamic -lpthread\
 	   -lrocksdb \
 	   -lsnappy \
+	   -llz4 \
 	   -lrt \
 	   -lz \
 	   -lbz2
